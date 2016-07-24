@@ -1,0 +1,6 @@
+.idea
+*.iml
+vendor/
+composer.phar
+.DS_Store
+config.json

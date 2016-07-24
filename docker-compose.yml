@@ -1,0 +1,10 @@
+version: '2'
+services:
+  www:
+    image: pooya/paas
+    volumes:
+      - ".:/var/www/project"
+    ports:
+      - 8001:80
+    network_mode: "bridge"
+    restart: always
