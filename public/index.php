@@ -41,7 +41,7 @@ if (isset($_POST['action'])) {
             $key = User::current()->makeSecretKey();
             $db->users->findOneAndUpdate(['email' => $_REQUEST['email']], ['$set' => ['key' => $key]]);
 
-            $message = 'Your Secret Key is '+$key;
+            $message = "Your Secret Key is "+$key;
             break;
     }
 }
