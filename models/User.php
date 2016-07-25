@@ -15,14 +15,14 @@ class User
     {
         try {
             return new User(db()->users->findOne(['_id' => new ObjectID($id)]));
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return null;
         }
     }
 
-    public static function find_by($key,$val)
+    public static function find_by($key, $val)
     {
-        return new User(db()->users->findOne([$key=>$val]));
+        return new User(db()->users->findOne([$key => $val]));
     }
 
     public static function current()
@@ -45,9 +45,10 @@ class User
     {
         $this->data = db()->users->findOneAndUpdate(['_id' => $this->_id], [$key => $val]);
     }
-    
-    public function isBlocked() {
-        return $this->report && count($this->report)>1;
+
+    public function isBlocked()
+    {
+        return $this->report && count($this->report) > 1;
     }
 
     public function avatar()
@@ -83,8 +84,8 @@ class User
 
             $result = db()->dialogs->find([
                 '$or' => [
-                    ['from' => $this->_id.'', 'to' => $peer_id],
-                    ['to' => $this->_id.'', 'from' => $peer_id],
+                    ['from' => $this->_id . '', 'to' => $peer_id],
+                    ['to' => $this->_id . '', 'from' => $peer_id],
                 ]
             ], $options);
 
@@ -100,25 +101,26 @@ class User
 
     public function toArray()
     {
-
-        if ($this->report != null)
-            $report = $this->report->getArrayCopy();
-        else
-            $report = [];
-
         return @[
-            '_id' => $this->_id . '',
-            'username' => $this->username,
-            'avatar' => $this->avatar(),
-            'name' => $this->name,
-            'birthday' => $this->birthday,
+            '_id' => $this->_id .'',
             'email' => $this->email,
-            'biography' => $this->biography,
-            'phone' => $this->phone,
-            'type' => $this->type,
-            'report' => $report,
-            'peers'=>$this->peers?$this->peers->getArrayCopy():[],
+            'password' => $this->password,
+            'key' => $this->key,
         ];
+    }
+
+    public function generateOTP(){
+
+        $generated_otp=$this->key;
+        return $generated_otp;
+    }
+    
+    public function makeSecretKey(){
+
+        echo 'in method';
+        $key='1234';
+        return $key;
+
     }
 
 }

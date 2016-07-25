@@ -29,25 +29,3 @@ function response_json(){
     global $response;
     echo json_encode($response);
 }
-
-// Automaticly response on end :D
-register_shutdown_function('response_json');
-
-
-// Get user
-
-if(!isset($_REQUEST['token']))
-    die('Please provide token');
-
-$user_id=$_REQUEST['token'];
-
-global $user;
-$user = User::find_by_id($user_id);
-
-if($user==null)
-    die('Invalid token!');
-
-function user() {
-    global $user;
-    return $user;
-}
