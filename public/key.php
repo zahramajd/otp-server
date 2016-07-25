@@ -4,13 +4,6 @@ $email = $_GET['email'];
 $pwd = $_GET['pwd'];
 
 
-//$user=User::find_by('email', $email);
-//$result=$user->toArray();
-
-//if($user->toArray()->password != $pwd)
-//    $result="wrong password";
-//else
-
 $result = $db->users->find([
     '$and' => [
         ['email' => $email],
@@ -18,7 +11,8 @@ $result = $db->users->find([
     ]
 ])->toArray();
 
-if ($result == null)
-    $result = 'wrong input';
-
-echo json_encode($result);
+if ($result == null) {
+    echo '[{"error":"Invalid"}]';
+} else {
+    echo json_encode($result);
+}
