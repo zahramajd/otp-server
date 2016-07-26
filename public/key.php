@@ -18,7 +18,7 @@ $key = $_POST['key'];
 //    echo json_encode($result);
 //}
 //////
-
+echo "raftttt";
 echo $email;
 echo $pwd;
 echo $key;
