@@ -23,26 +23,26 @@ if (isset($_POST['action'])) {
                     $message = "logged in :)";
             }
             break;
-        case 'sign-up':
-
-            // Check for duplicate email
-            $current = $db->users->findOne(['email' => $_REQUEST['email']]);
-            if ($current != null) {
-                $message = 'User exists';
-                break;
-            }
-            // Insert new user to DB
-            $db->users->insertOne([
-                'email' => $_REQUEST['email'],
-                'password' => $_REQUEST['password'],
-            ]);
-            // Get the key and update DB
-            $current = User::find_by('email', $_REQUEST['email']);
-            $key = User::current()->makeSecretKey();
-            $db->users->findOneAndUpdate(['email' => $_REQUEST['email']], ['$set' => ['key' => $key]]);
-
-            $message = "Your Secret Key is "+$key;
-            break;
+//        case 'sign-up':
+//
+//            // Check for duplicate email
+//            $current = $db->users->findOne(['email' => $_REQUEST['email']]);
+//            if ($current != null) {
+//                $message = 'User exists';
+//                break;
+//            }
+//            // Insert new user to DB
+//            $db->users->insertOne([
+//                'email' => $_REQUEST['email'],
+//                'password' => $_REQUEST['password'],
+//            ]);
+//            // Get the key and update DB
+//            $current = User::find_by('email', $_REQUEST['email']);
+//            $key = User::current()->makeSecretKey();
+//            $db->users->findOneAndUpdate(['email' => $_REQUEST['email']], ['$set' => ['key' => $key]]);
+//
+//            $message = 'Your Secret Key is '+$key;
+//            break;
     }
 }
 ?>
@@ -78,9 +78,6 @@ if (isset($_POST['action'])) {
 
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="log-in">Log
                 in
-            </button>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="sign-up">Sign
-                up
             </button>
         </form>
         <!--        <a href="#" class="forgot-password">Forgot your password?</a>-->
