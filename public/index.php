@@ -67,7 +67,8 @@ if (isset($_POST['action'])) {
             </div>
         <?php endif; ?>
 
-                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+<!--                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x." />-->
+        <img id="profile-img" class="profile-img-card" src="./css/Key.png" />
         <p id="profile-name" class="profile-name-card"></p>
 
         <form class="form-signin" method="post">
