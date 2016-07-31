@@ -5,6 +5,9 @@ $pwd = $_POST['pwd'];
 $key = $_POST['key'];
 
 $decoded_key =base64_decode($key);
+$arr=explode($email, $decoded_key);
+$secret=$arr[0];
+
 
 
 // Check for duplicate email
