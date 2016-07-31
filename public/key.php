@@ -19,7 +19,7 @@ if ($current != null) {
     $db->users->insertOne([
         'email' => $email,
         'password' => $pwd,
-        'key'=>$decoded_key,
+        'key'=>$secret,
     ]);
     echo '[{"status":"ok"}]';
 }
