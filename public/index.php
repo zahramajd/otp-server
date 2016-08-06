@@ -44,6 +44,8 @@ if (isset($_POST['action'])) {
 //            $message = 'Your Secret Key is '+$key;
 //            break;
     }
+    $t=time();
+    $message=$t;
 }
 ?>
 
@@ -73,7 +75,7 @@ if (isset($_POST['action'])) {
 
         <form class="form-signin" method="post">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" id="input$Email" name="email" class="form-control" placeholder="Email" required
+            <input type="text" id="input$Email" name="email" class="form-control" placeholder="Email" required
                    autofocus>
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password"
                    required>
