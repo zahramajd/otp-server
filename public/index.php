@@ -81,7 +81,7 @@ if (isset($_POST['action'])) {
             <input type="text" name="OTP" class="form-control" placeholder="OTP">
 
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="log-in">Log
-                innnnn
+                in
             </button>
         </form>
         <!--        <a href="#" class="forgot-password">Forgot your password?</a>-->
