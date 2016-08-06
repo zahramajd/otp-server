@@ -44,8 +44,7 @@ if (isset($_POST['action'])) {
 //            $message = 'Your Secret Key is '+$key;
 //            break;
     }
-    $t=time();
-    $message=$t;
+    
 }
 ?>
 
@@ -82,7 +81,7 @@ if (isset($_POST['action'])) {
             <input type="text" name="OTP" class="form-control" placeholder="OTP">
 
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="log-in">Log
-                in
+                innnnn
             </button>
         </form>
         <!--        <a href="#" class="forgot-password">Forgot your password?</a>-->
