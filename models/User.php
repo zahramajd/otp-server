@@ -124,7 +124,7 @@ class User
                 ((ord($hash[$offset + 1]) & 0xff) << 16) |
                 ((ord($hash[$offset + 2]) & 0xff) << 8) |
                 (ord($hash[$offset + 3]) & 0xff)
-            ) ;
+            ) % pow(10, 6);
         return $OTP;
     }
     
