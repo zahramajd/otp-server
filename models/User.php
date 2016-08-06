@@ -113,9 +113,9 @@ class User
 
 //        $generated_otp=$this->key;
 //        return $generated_otp;
-        $binary_timestamp = pack('N*', 0) . pack('N*', get_timestamp());
+        $binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
 
-        $hash = hash_hmac('sha1', $binary_timestamp, base32_decode($this->key), true);
+        $hash = hash_hmac('sha1', $binary_timestamp, User::base32_decode($this->key), true);
 
         $offset = ord($hash[19]) & 0xf;
 
@@ -128,7 +128,7 @@ class User
         return "hbj";
     }
     
-    function base32_decode($b32)
+    public function base32_decode($b32)
     {
         $lut = array("A" => 0, "B" => 1,
             "C" => 2, "D" => 3,
@@ -169,7 +169,7 @@ class User
         return $binary;
     }
 
-    function get_timestamp()
+    public function get_timestamp()
     {
         return floor(microtime(true) / 30);
     }
