@@ -115,7 +115,7 @@ class User
 //        return $generated_otp;
         $binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
 
-        $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
+        $hash = hash_hmac('HmacSHA1', $binary_timestamp, base64_decode($this->key), true);
 
         $offset = ord($hash[19]) & 0xf;
 
@@ -124,7 +124,7 @@ class User
                 ((ord($hash[$offset + 1]) & 0xff) << 16) |
                 ((ord($hash[$offset + 2]) & 0xff) << 8) |
                 (ord($hash[$offset + 3]) & 0xff)
-            ) % pow(10, 6);
+            ) ;
         return $OTP;
     }
     
