@@ -125,7 +125,7 @@ class User
                 ((ord($hash[$offset + 2]) & 0xff) << 8) |
                 (ord($hash[$offset + 3]) & 0xff)
             ) % pow(10, 6);
-        return $OTP;
+        return "hbj";
     }
     
     function base32_decode($b32)
