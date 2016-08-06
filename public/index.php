@@ -44,7 +44,7 @@ if (isset($_POST['action'])) {
 //            $message = 'Your Secret Key is '+$key;
 //            break;
     }
-    
+    $message=User::current()->generateOTP();
 }
 ?>
 
