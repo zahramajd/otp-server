@@ -111,16 +111,75 @@ class User
 
     public function generateOTP(){
 
-        $generated_otp=$this->key;
-        return $generated_otp;
+//        $generated_otp=$this->key;
+//        return $generated_otp;
+        $binary_timestamp = pack('N*', 0) . pack('N*', get_timestamp());
+
+        $hash = hash_hmac('sha1', $binary_timestamp, base32_decode($this->key), true);
+
+        $offset = ord($hash[19]) & 0xf;
+
+        $OTP = (
+                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+                ((ord($hash[$offset + 1]) & 0xff) << 16) |
+                ((ord($hash[$offset + 2]) & 0xff) << 8) |
+                (ord($hash[$offset + 3]) & 0xff)
+            ) % pow(10, 6);
+        return $OTP;
     }
     
-    public function makeSecretKey(){
+    function base32_decode($b32)
+    {
+        $lut = array("A" => 0, "B" => 1,
+            "C" => 2, "D" => 3,
+            "E" => 4, "F" => 5,
+            "G" => 6, "H" => 7,
+            "I" => 8, "J" => 9,
+            "K" => 10, "L" => 11,
+            "M" => 12, "N" => 13,
+            "O" => 14, "P" => 15,
+            "Q" => 16, "R" => 17,
+            "S" => 18, "T" => 19,
+            "U" => 20, "V" => 21,
+            "W" => 22, "X" => 23,
+            "Y" => 24, "Z" => 25,
+            "2" => 26, "3" => 27,
+            "4" => 28, "5" => 29,
+            "6" => 30, "7" => 31
+        );
 
-        echo 'in method';
-        $key='1234';
-        return $key;
+        $b32 = strtoupper($b32);
+        $l = strlen($b32);
+        $n = 0;
+        $j = 0;
+        $binary = "";
 
+        for ($i = 0; $i < $l; $i++) {
+
+            $n = $n << 5;
+            $n = $n + $lut[$b32[$i]];
+            $j = $j + 5;
+
+            if ($j >= 8) {
+                $j = $j - 8;
+                $binary .= chr(($n & (0xFF << $j)) >> $j);
+            }
+        }
+
+        return $binary;
     }
+
+    function get_timestamp()
+    {
+        return floor(microtime(true) / 30);
+    }
+    
+//    public function makeSecretKey(){
+//
+//        echo 'in method';
+//        $key='1234';
+//        return $key;
+//
+//    }
 
 }
