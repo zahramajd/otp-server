@@ -171,7 +171,7 @@ class User
 
     public function get_timestamp()
     {
-        return floor(microtime(true) / 30);
+        return time();
     }
     
 //    public function makeSecretKey(){
