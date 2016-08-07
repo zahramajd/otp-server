@@ -122,6 +122,7 @@ class User
 //
         $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
 
+        echo $hash;
 //        $hash = hash_hmac("sha1", $binary_timestamp, base64_decode(strtr($this->key, '-_', '+/')), true);
 //        $hash = strtr(base64_encode($hash), '+/', '-_');
 
