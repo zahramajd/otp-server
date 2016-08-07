@@ -1,5 +1,12 @@
 <?php
+require_once("android/util/Log.php");
+require_once("Javax/crypto/Mac.php");
+require_once("javax/crypto/spec/SecretKeySpec.php");
+require_once("Java/lang/reflect/UndeclaredThrowableException.php");
+require_once("java/nio/ByteBuffer.php");
+
 use MongoDB\BSON\ObjectID;
+
 
 
 /**
@@ -112,9 +119,9 @@ class User
     public function generateOTP()
     {
 
-        //$binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
+        $binary_timestamp = pack('N*', 0) . pack('N*', 1470556967063 );
         // $binary_timestamp=User::get_timestamp();
-        $binary_timestamp = 1470556967063;
+       // $binary_timestamp = 1470556967063;
         echo "key : " . $this->key;
         echo "base 64 : " . base64_decode($this->key);
 
@@ -175,6 +182,7 @@ class User
 
     public function get_timestamp()
     {
+        
         return time();
     }
 
@@ -185,5 +193,6 @@ class User
 //        return $key;
 //
 //    }
+
 
 }
