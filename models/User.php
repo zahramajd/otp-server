@@ -114,9 +114,9 @@ class User
 
 //        $generated_otp=$this->key;
 //        return $generated_otp;
-        $binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
+        //$binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
         // $binary_timestamp=User::get_timestamp();
-        // $binary_timestamp=1470486664405;
+         $binary_timestamp=1470548846615;
 
         $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
 
