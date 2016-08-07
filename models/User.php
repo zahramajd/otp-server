@@ -1,10 +1,4 @@
 <?php
-require_once("android/util/Log.php");
-require_once("Javax/crypto/Mac.php");
-require_once("javax/crypto/spec/SecretKeySpec.php");
-require_once("Java/lang/reflect/UndeclaredThrowableException.php");
-require_once("java/nio/ByteBuffer.php");
-
 use MongoDB\BSON\ObjectID;
 
 
@@ -182,7 +176,7 @@ class User
 
     public function get_timestamp()
     {
-        
+
         return time();
     }
 
