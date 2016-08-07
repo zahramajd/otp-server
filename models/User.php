@@ -112,18 +112,20 @@ class User
     public function generateOTP()
     {
 
-//        $generated_otp=$this->key;
-//        return $generated_otp;
         //$binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
         // $binary_timestamp=User::get_timestamp();
         $binary_timestamp = 1470552039795;
         echo "key : " . $this->key;
         echo "base 64 : " . base64_decode($this->key);
 
-
         $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
         echo "hash : " . $hash;
-        echo "convert : " . ToBase64String($hash);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded","key: ".$this->key,"sig: ".$hash));
+        $response = curl_exec($ch);
+        echo "re".$response;
+
 
         $offset = ord($hash[19]) & 0xf;
 
