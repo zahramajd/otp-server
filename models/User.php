@@ -114,21 +114,15 @@ class User
 
         $binary_timestamp = pack('N*', 0) . pack('N*', 1470561544180);
 
-        $my_key=$this->key;
-        $my_key=base64_decode($my_key);
+        $my_key = $this->key;
+        $my_key = base64_decode($my_key);
 
         $b = array();
-        foreach(str_split($my_key) as $c)
+        foreach (str_split($my_key) as $c)
             $b[] = sprintf("%08b", ord($c));
 
         $string = implode(array_map("chr", $b));
-        $hash = hash_hmac('sha1', $binary_timestamp, $string, true);
-
-//        $hash=unpack('C*', $hash);
-//        $offset = $hash[19] & 0xf;
-//        $binary = (($hash[$offset] & 0x7f) << 24) | (($hash[$offset + 1] & 0xff) << 16) | (($hash[$offset + 2] & 0xff) << 8) | ($hash[$offset + 3] & 0xff);
-//        $OTP = (int)($binary % pow(10, 6));
-
+        $hash = hash_hmac('sha1', $binary_timestamp, $my_key, true);
 
         $offset = ord($hash[19]) & 0xf;
 
