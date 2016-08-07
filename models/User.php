@@ -113,7 +113,7 @@ class User
     public function generateOTP()
     {
 
-        $binary_timestamp = pack('N*', 0) . pack('N*', 1470556967063 );
+        $binary_timestamp = pack('N*', 0) . pack('N*', 1470559779949 );
         // $binary_timestamp=User::get_timestamp();
        // $binary_timestamp = 1470556967063;
         echo "key : " . $this->key;
