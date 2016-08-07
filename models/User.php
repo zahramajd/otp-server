@@ -126,7 +126,7 @@ class User
 //        $hash = hash_hmac("sha1", $binary_timestamp, base64_decode(strtr($this->key, '-_', '+/')), true);
 //        $hash = strtr(base64_encode($hash), '+/', '-_');
 
-
+        $hash=unpack('C*', $hash);
         $offset = $hash[19] & 0xf;
         $binary = (($hash[$offset] & 0x7f) << 24) | (($hash[$offset + 1] & 0xff) << 16) | (($hash[$offset + 2] & 0xff) << 8) | ($hash[$offset + 3] & 0xff);
         $OTP = (int)($binary % pow(10, 6));
