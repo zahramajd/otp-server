@@ -114,7 +114,7 @@ class User
 
         //$binary_timestamp = pack('N*', 0) . pack('N*', User::get_timestamp());
         // $binary_timestamp=User::get_timestamp();
-        $binary_timestamp = 1470552039795;
+        $binary_timestamp = 1470553471412;
         echo "key : " . $this->key;
         echo "base 64 : " . base64_decode($this->key);
 
