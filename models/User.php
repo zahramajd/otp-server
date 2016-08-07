@@ -116,12 +116,13 @@ class User
 
         $my_key=$this->key;
         $my_key=base64_decode($my_key);
-        
-//        $b = array();
-//        foreach(str_split($my_key) as $c)
-//            $b[] = sprintf("%08b", ord($c));
 
-        $hash = hash_hmac('hmacsha1', $binary_timestamp, $my_key, true);
+        $b = array();
+        foreach(str_split($my_key) as $c)
+            $b[] = sprintf("%08b", ord($c));
+
+        $string = implode(array_map("chr", $b));
+        $hash = hash_hmac('hmacsha1', $binary_timestamp, $string, true);
 
 //        $hash=unpack('C*', $hash);
 //        $offset = $hash[19] & 0xf;
