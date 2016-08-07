@@ -123,6 +123,7 @@ class User
 
         $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
 
+        echo $hash;
         $offset = ord($hash[19]) & 0xf;
 
         $OTP = (
