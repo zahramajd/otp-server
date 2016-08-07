@@ -115,7 +115,7 @@ class User
         $binary_timestamp = pack('N*', 0) . pack('N*', 1470561544180);
 
         $my_key = $this->key;
-        $my_key = base64_decode($my_key);
+       // $my_key = base64_decode($my_key);
 
         $b = array();
         foreach (str_split($my_key) as $c)
@@ -135,50 +135,9 @@ class User
         return $OTP;
     }
 
-    public function base32_decode($b32)
-    {
-        $lut = array("A" => 0, "B" => 1,
-            "C" => 2, "D" => 3,
-            "E" => 4, "F" => 5,
-            "G" => 6, "H" => 7,
-            "I" => 8, "J" => 9,
-            "K" => 10, "L" => 11,
-            "M" => 12, "N" => 13,
-            "O" => 14, "P" => 15,
-            "Q" => 16, "R" => 17,
-            "S" => 18, "T" => 19,
-            "U" => 20, "V" => 21,
-            "W" => 22, "X" => 23,
-            "Y" => 24, "Z" => 25,
-            "2" => 26, "3" => 27,
-            "4" => 28, "5" => 29,
-            "6" => 30, "7" => 31
-        );
-
-        $b32 = strtoupper($b32);
-        $l = strlen($b32);
-        $n = 0;
-        $j = 0;
-        $binary = "";
-
-        for ($i = 0; $i < $l; $i++) {
-
-            $n = $n << 5;
-            $n = $n + $lut[$b32[$i]];
-            $j = $j + 5;
-
-            if ($j >= 8) {
-                $j = $j - 8;
-                $binary .= chr(($n & (0xFF << $j)) >> $j);
-            }
-        }
-
-        return $binary;
-    }
 
     public function get_timestamp()
     {
-
         return time();
     }
 
@@ -190,5 +149,45 @@ class User
 //
 //    }
 
+//    public function base32_decode($b32)
+//    {
+//        $lut = array("A" => 0, "B" => 1,
+//            "C" => 2, "D" => 3,
+//            "E" => 4, "F" => 5,
+//            "G" => 6, "H" => 7,
+//            "I" => 8, "J" => 9,
+//            "K" => 10, "L" => 11,
+//            "M" => 12, "N" => 13,
+//            "O" => 14, "P" => 15,
+//            "Q" => 16, "R" => 17,
+//            "S" => 18, "T" => 19,
+//            "U" => 20, "V" => 21,
+//            "W" => 22, "X" => 23,
+//            "Y" => 24, "Z" => 25,
+//            "2" => 26, "3" => 27,
+//            "4" => 28, "5" => 29,
+//            "6" => 30, "7" => 31
+//        );
+//
+//        $b32 = strtoupper($b32);
+//        $l = strlen($b32);
+//        $n = 0;
+//        $j = 0;
+//        $binary = "";
+//
+//        for ($i = 0; $i < $l; $i++) {
+//
+//            $n = $n << 5;
+//            $n = $n + $lut[$b32[$i]];
+//            $j = $j + 5;
+//
+//            if ($j >= 8) {
+//                $j = $j - 8;
+//                $binary .= chr(($n & (0xFF << $j)) >> $j);
+//            }
+//        }
+//
+//        return $binary;
+//    }
 
 }
