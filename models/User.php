@@ -119,7 +119,10 @@ class User
         echo "base 64 : " . base64_decode($this->key);
 
         $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
-        echo  $hash;
+        $sep = implode(",",$hash );
+        //echo  $hash;
+        echo $sep;
+
 
         $offset = ord($hash[19]) & 0xf;
 
