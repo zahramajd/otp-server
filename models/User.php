@@ -113,18 +113,9 @@ class User
     {
 
         $binary_timestamp = pack('N*', 0) . pack('N*', 1470561544180);
-        // $binary_timestamp=User::get_timestamp();
-        // $binary_timestamp = 1470556967063;
 
 
-//        echo "key : " . $this->key;
-//        echo "base 64 : " . base64_decode($this->key);
-//
-        $hash = hash_hmac('sha1', $binary_timestamp, base64_decode($this->key), true);
-
-        echo $hash;
-//        $hash = hash_hmac("sha1", $binary_timestamp, base64_decode(strtr($this->key, '-_', '+/')), true);
-//        $hash = strtr(base64_encode($hash), '+/', '-_');
+        $hash = hash_hmac('sha1', $binary_timestamp, $this->key, true);
 
         $hash=unpack('C*', $hash);
         $offset = $hash[19] & 0xf;
