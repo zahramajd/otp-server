@@ -122,7 +122,7 @@ class User
             $b[] = sprintf("%08b", ord($c));
 
         $string = implode(array_map("chr", $b));
-        $hash = hash_hmac('sha1', $binary_timestamp, $b, true);
+        $hash = hash_hmac('sha1',1470561544180 , $string, true);
 
         $offset = ord($hash[19]) & 0xf;
 
