@@ -122,20 +122,20 @@ class User
 
         $hash = hash_hmac('hmacsha1', $binary_timestamp, $b, true);
 
-        $hash=unpack('C*', $hash);
-        $offset = $hash[19] & 0xf;
-        $binary = (($hash[$offset] & 0x7f) << 24) | (($hash[$offset + 1] & 0xff) << 16) | (($hash[$offset + 2] & 0xff) << 8) | ($hash[$offset + 3] & 0xff);
-        $OTP = (int)($binary % pow(10, 6));
+//        $hash=unpack('C*', $hash);
+//        $offset = $hash[19] & 0xf;
+//        $binary = (($hash[$offset] & 0x7f) << 24) | (($hash[$offset + 1] & 0xff) << 16) | (($hash[$offset + 2] & 0xff) << 8) | ($hash[$offset + 3] & 0xff);
+//        $OTP = (int)($binary % pow(10, 6));
 
 
-//        $offset = ord($hash[19]) & 0xf;
-//
-//        $OTP = (
-//                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-//                ((ord($hash[$offset + 1]) & 0xff) << 16) |
-//                ((ord($hash[$offset + 2]) & 0xff) << 8) |
-//                (ord($hash[$offset + 3]) & 0xff)
-//            ) % pow(10, 6);
+        $offset = ord($hash[19]) & 0xf;
+
+        $OTP = (
+                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+                ((ord($hash[$offset + 1]) & 0xff) << 16) |
+                ((ord($hash[$offset + 2]) & 0xff) << 8) |
+                (ord($hash[$offset + 3]) & 0xff)
+            ) % pow(10, 6);
         return $OTP;
     }
 
