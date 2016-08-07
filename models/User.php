@@ -114,8 +114,13 @@ class User
 
         $binary_timestamp = pack('N*', 0) . pack('N*', 1470561544180);
 
+        $my_key=$this->key;
+        $my_key=base64_decode($my_key);
+        $b = array();
+        foreach(str_split($my_key) as $c)
+            $b[] = sprintf("%08b", ord($c));
 
-        $hash = hash_hmac('sha1', $binary_timestamp, $this->key, true);
+        $hash = hash_hmac('hmacsha1', $binary_timestamp, $b, true);
 
         $hash=unpack('C*', $hash);
         $offset = $hash[19] & 0xf;
