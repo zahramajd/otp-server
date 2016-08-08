@@ -117,27 +117,27 @@ class User
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
 
-        $b = array();
-        foreach (str_split($my_key) as $c)
-            $b[] = sprintf("%08b", ord($c));
+//        $b = array();
+//        foreach (str_split($my_key) as $c)
+//            $b[] = sprintf("%08b", ord($c));
+//
+//        $string = implode(array_map("chr", $b));
 
-        $string = implode(array_map("chr", $b));
+        echo $my_key;
+        echo "\n";
+        echo $binary_timestamp;
 
-        // echo $my_key;
+        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
 
-        $hash = hash_hmac('SHA1', '[B@35ae721', '[B@4a6a746');
-
-      //  $offset = ord($hash[19]) & 0xf;
-
-        $offset = 10;
-        echo $offset;
+     //   $offset = ord($hash[19]) & 0xf;
+        $offset=10;
 
         $OTP = (
-            ((ord($hash[10]) & 0x7f) << 24) |
-            ((ord($hash[11]) & 0xff) << 16) |
-            ((ord($hash[12]) & 0xff) << 8) |
-            (ord($hash[13]) & 0xff)
-        );
+                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+                ((ord($hash[$offset + 1]) & 0xff) << 16) |
+                ((ord($hash[$offset + 2]) & 0xff) << 8) |
+                (ord($hash[$offset + 3]) & 0xff)
+            ) ;
         return $OTP;
     }
 
