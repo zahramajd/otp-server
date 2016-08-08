@@ -122,7 +122,7 @@ class User
             $b[] = sprintf("%08b", ord($c));
 
         $string = implode(array_map("chr", $b));
-        $hash = hash_hmac('sha1', 1470601703232, $my_key);
+        $hash = hash_hmac('sha1', 1470633732454, $my_key);
 
         $offset = ord($hash[19]) & 0xf;
 
@@ -131,7 +131,7 @@ class User
                 ((ord($hash[$offset + 1]) & 0xff) << 16) |
                 ((ord($hash[$offset + 2]) & 0xff) << 8) |
                 (ord($hash[$offset + 3]) & 0xff)
-            ) % pow(10, 6);
+            ) ;
         return $OTP;
     }
 
