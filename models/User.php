@@ -123,9 +123,9 @@ class User
 
         $string = implode(array_map("chr", $b));
 
-        echo $my_key;
+       // echo $my_key;
 
-        $hash = hash_hmac('SHA1', '[B@35ae721', '[B@4a6a746');
+        $hash = hash_hmac('SHA1', 1470634927372, '[B@4a6a746');
 
         $offset = ord($hash[19]) & 0xf;
 
