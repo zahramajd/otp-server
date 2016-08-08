@@ -125,9 +125,11 @@ class User
 
         echo $my_key;
 
-        $hash = hash_hmac('HmacSHA1', '[B@9302c64', '[B@618ecd');
+        $hash = hash_hmac('HmacSHA1', '[B@35ae721', '[B@4a6a746');
 
         $offset = ord($hash[19]) & 0xf;
+
+        echo $offset;
 
         $OTP = (
                 ((ord($hash[$offset + 0]) & 0x7f) << 24) |
