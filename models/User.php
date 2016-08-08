@@ -125,7 +125,7 @@ class User
 
         echo $my_key;
 
-        $hash = hash_hmac('HmacSHA1', '[B@35ae721', '[B@4a6a746');
+        $hash = hash_hmac('SHA1', '[B@35ae721', '[B@4a6a746');
 
         $offset = ord($hash[19]) & 0xf;
 
