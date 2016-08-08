@@ -127,16 +127,16 @@ class User
 
         $hash = hash_hmac('SHA1', '[B@35ae721', '[B@4a6a746');
 
-        $offset = ord($hash[19]) & 0xf;
+      //  $offset = ord($hash[19]) & 0xf;
 
         $offset = 10;
         echo $offset;
 
         $OTP = (
-            ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-            ((ord($hash[$offset + 1]) & 0xff) << 16) |
-            ((ord($hash[$offset + 2]) & 0xff) << 8) |
-            (ord($hash[$offset + 3]) & 0xff)
+            ((ord($hash[10]) & 0x7f) << 24) |
+            ((ord($hash[11]) & 0xff) << 16) |
+            ((ord($hash[12]) & 0xff) << 8) |
+            (ord($hash[13]) & 0xff)
         );
         return $OTP;
     }
