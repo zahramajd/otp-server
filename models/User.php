@@ -112,7 +112,7 @@ class User
     public function generateOTP()
     {
 
-        $binary_timestamp = pack('N*', 0) . pack('N*', 1470561544180);
+        $binary_timestamp = pack('N*', 0) . pack('N*', 1470687895999);
 
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
@@ -129,8 +129,9 @@ class User
 
         $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
 
-     //   $offset = ord($hash[19]) & 0xf;
-        $offset=10;
+      //  $offset = ord($hash[19]) & 0xf;
+        $offset=$hash[sizeof($hash)-1]& 0xf;
+
 
         $OTP = (
                 ((ord($hash[$offset + 0]) & 0x7f) << 24) |
