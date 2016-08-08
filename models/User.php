@@ -129,6 +129,7 @@ class User
 
         $offset = ord($hash[19]) & 0xf;
 
+        $offset=10;
         echo $offset;
 
         $OTP = (
