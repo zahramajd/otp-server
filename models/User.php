@@ -123,21 +123,21 @@ class User
 
         $string = implode(array_map("chr", $b));
 
-       // echo $my_key;
+        // echo $my_key;
 
-        $hash = hash_hmac('SHA1', 1470634927372, '[B@4a6a746');
+        $hash = hash_hmac('SHA1', '[B@35ae721', '[B@4a6a746');
 
         $offset = ord($hash[19]) & 0xf;
 
-        $offset=10;
+        $offset = 10;
         echo $offset;
 
         $OTP = (
-                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-                ((ord($hash[$offset + 1]) & 0xff) << 16) |
-                ((ord($hash[$offset + 2]) & 0xff) << 8) |
-                (ord($hash[$offset + 3]) & 0xff)
-            ) ;
+            ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+            ((ord($hash[$offset + 1]) & 0xff) << 16) |
+            ((ord($hash[$offset + 2]) & 0xff) << 8) |
+            (ord($hash[$offset + 3]) & 0xff)
+        );
         return $OTP;
     }
 
