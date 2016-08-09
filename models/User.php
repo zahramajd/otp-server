@@ -122,6 +122,7 @@ class User
 
           $offset = ord($hash[19]) & 0xf;
        // $offset = ord(substr($hash, -1)) & 0x0F;
+        $offset=14;
         echo $offset."\n";
         echo ord($hash[$offset + 0]);
 
