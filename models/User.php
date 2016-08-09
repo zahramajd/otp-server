@@ -129,7 +129,7 @@ class User
 //            (ord($hash[$offset + 3]) & 0xff)
 //        );
 
-        $secretkey = $this->_base32Decode($this->key);
+        $secretkey =base64_decode($this->key);
         // Pack time into binary string
         $time = chr(0).chr(0).chr(0).chr(0).pack('N*', 1470723295807);
         // Hash it with users secret key
