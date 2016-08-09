@@ -10,7 +10,6 @@ class User
 {
 
 
-
     var $data;
 
     public static function find_by_id($id)
@@ -114,41 +113,42 @@ class User
     public function generateOTP()
     {
 
-//        $binary_timestamp = pack('N*', 0) . pack('N*', 1470688197377);
-//
-//        $my_key = $this->key;
-//        $my_key = base64_decode($my_key);
-//
-//        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
-//
-//        $offset = ord($hash[19]) & 0xf;
-//
-//
-//        $OTP = (
-//            ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-//            ((ord($hash[$offset + 1]) & 0xff) << 16) |
-//            ((ord($hash[$offset + 2]) & 0xff) << 8) |
-//            (ord($hash[$offset + 3]) & 0xff)
-//        );
+        $binary_timestamp = pack('N*', 0) . pack('N*', 1470725876118);
 
-        $secretkey =base64_decode($this->key);
-        // Pack time into binary string
-        $time = chr(0).chr(0).chr(0).chr(0).pack('N*', 1470725642943);
-        // Hash it with users secret key
-        $hm = hash_hmac('SHA1', $time, $secretkey, true);
+        $my_key = $this->key;
+        $my_key = base64_decode($my_key);
 
-        // Use last nipple of result as index/offset
-        $offset = ord(substr($hm, -1)) & 0x0F;
-        // grab 4 bytes of the result
-        $hashpart = substr($hm, $offset, 4);
-        // Unpak binary value
-        $value = unpack('N', $hashpart);
-        $value = $value[1];
-        // Only 32 bits
-        $value = $value & 0x7FFFFFFF;
-        $modulo = pow(10,6);
-        return str_pad($value % $modulo, 6, '0', STR_PAD_LEFT);
-      //  return $OTP;
+        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
+
+        //  $offset = ord($hash[19]) & 0xf;
+        $offset = ord(substr($hash, -1)) & 0x0F;
+
+        $OTP = (
+                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+                ((ord($hash[$offset + 1]) & 0xff) << 16) |
+                ((ord($hash[$offset + 2]) & 0xff) << 8) |
+                (ord($hash[$offset + 3]) & 0xff)
+            ) % pow(10, 6);
+        return $OTP;
+
+
+//        $secretkey = base64_decode($this->key);
+//        // Pack time into binary string
+//        $time = chr(0) . chr(0) . chr(0) . chr(0) . pack('N*', 1470725642943);
+//        // Hash it with users secret key
+//        $hm = hash_hmac('SHA1', $time, $secretkey, true);
+//
+//        // Use last nipple of result as index/offset
+//        $offset = ord(substr($hm, -1)) & 0x0F;
+//        // grab 4 bytes of the result
+//        $hashpart = substr($hm, $offset, 4);
+//        // Unpak binary value
+//        $value = unpack('N', $hashpart);
+//        $value = $value[1];
+//        // Only 32 bits
+//        $value = $value & 0x7FFFFFFF;
+//        $modulo = pow(10, 6);
+//        return str_pad($value % $modulo, 6, '0', STR_PAD_LEFT);
     }
 
 
