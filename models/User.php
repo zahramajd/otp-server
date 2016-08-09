@@ -118,7 +118,7 @@ class User
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
 
-        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
+        $hash = hash_hmac('sha1', 1470727668313, $my_key);
 
           $offset = ord($hash[19]) & 0xf;
        // $offset = ord(substr($hash, -1)) & 0x0F;
