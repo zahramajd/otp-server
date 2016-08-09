@@ -74,7 +74,6 @@ class User
 
         $offset = ord($hash[19]) & 0xf;
         // $offset = ord(substr($hash, -1)) & 0x0F;
-        $offset = 14;
         echo $offset . "\n";
         echo($hash[$offset]);
 
@@ -85,7 +84,6 @@ class User
                 (ord($hash[$offset + 3]) & 0xff)
             ) % pow(10, 6);
         return $OTP;
-
 
 //        $secretkey = base64_decode($this->key);
 //        // Pack time into binary string
