@@ -112,36 +112,40 @@ class User
     public function generateOTP()
     {
 
-        $binary_timestamp = pack('N*', 0) . pack('N*', 1470688197377);
-
-        $my_key = $this->key;
-        $my_key = base64_decode($my_key);
-
-//        $b = array();
-//        foreach (str_split($my_key) as $c)
-//            $b[] = sprintf("%08b", ord($c));
+//        $binary_timestamp = pack('N*', 0) . pack('N*', 1470688197377);
 //
-//        $string = implode(array_map("chr", $b));
+//        $my_key = $this->key;
+//        $my_key = base64_decode($my_key);
+//
+//        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
+//
+//        $offset = ord($hash[19]) & 0xf;
+//
+//
+//        $OTP = (
+//            ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+//            ((ord($hash[$offset + 1]) & 0xff) << 16) |
+//            ((ord($hash[$offset + 2]) & 0xff) << 8) |
+//            (ord($hash[$offset + 3]) & 0xff)
+//        );
 
-       // echo $my_key;
-      //  echo "\n";
-      //  echo $binary_timestamp;
-
-        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
-
-       $offset = ord($hash[19]) & 0xf;
-       // $offset=$hash[sizeof($hash)-1]& 0xf;
-        $offset=2;
-        echo $offset;
-
-
-        $OTP = (
-                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-                ((ord($hash[$offset + 1]) & 0xff) << 16) |
-                ((ord($hash[$offset + 2]) & 0xff) << 8) |
-                (ord($hash[$offset + 3]) & 0xff)
-            ) ;
-        return $OTP;
+        $secretkey = $this->_base32Decode($this->key);
+        // Pack time into binary string
+        $time = chr(0).chr(0).chr(0).chr(0).pack('N*', 1470723194964);
+        // Hash it with users secret key
+        $hm = hash_hmac('SHA1', $time, $secretkey, true);
+        // Use last nipple of result as index/offset
+        $offset = ord(substr($hm, -1)) & 0x0F;
+        // grab 4 bytes of the result
+        $hashpart = substr($hm, $offset, 4);
+        // Unpak binary value
+        $value = unpack('N', $hashpart);
+        $value = $value[1];
+        // Only 32 bits
+        $value = $value & 0x7FFFFFFF;
+        $modulo = pow(10, $this->_codeLength);
+        return str_pad($value % $modulo, $this->_codeLength, '0', STR_PAD_LEFT);
+      //  return $OTP;
     }
 
 
