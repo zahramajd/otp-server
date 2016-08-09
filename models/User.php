@@ -123,6 +123,7 @@ class User
         //  $offset = ord($hash[19]) & 0xf;
         $offset = ord(substr($hash, -1)) & 0x0F;
         echo $offset;
+        echo ord($hash[$offset + 0]);
 
         $OTP = (
                 ((ord($hash[$offset + 0]) & 0x7f) << 24) |
