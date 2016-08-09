@@ -133,9 +133,10 @@ class User
 
         $secretkey =base64_decode($this->key);
         // Pack time into binary string
-        $time = chr(0).chr(0).chr(0).chr(0).pack('N*', 1470723295807);
+        $time = chr(0).chr(0).chr(0).chr(0).pack('N*', 1470725642943);
         // Hash it with users secret key
         $hm = hash_hmac('SHA1', $time, $secretkey, true);
+
         // Use last nipple of result as index/offset
         $offset = ord(substr($hm, -1)) & 0x0F;
         // grab 4 bytes of the result
