@@ -120,8 +120,8 @@ class User
 
         $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
 
-        //  $offset = ord($hash[19]) & 0xf;
-        $offset = ord(substr($hash, -1)) & 0x0F;
+          $offset = ord($hash[19]) & 0xf;
+       // $offset = ord(substr($hash, -1)) & 0x0F;
         echo $offset."\n";
         echo ord($hash[$offset + 0]);
 
