@@ -12,13 +12,9 @@ class User
 
     var $data;
 
-    public static function find_by_id($id)
+    public function __construct($data)
     {
-        try {
-            return new User(db()->users->findOne(['_id' => new ObjectID($id)]));
-        } catch (Exception $e) {
-            return null;
-        }
+        $this->data = $data;
     }
 
     public static function find_by($key, $val)
@@ -32,11 +28,6 @@ class User
         return $current;
     }
 
-    public function __construct($data)
-    {
-        $this->data = $data;
-    }
-
     public function __get($key)
     {
         return @$this->data->$key;
@@ -47,52 +38,13 @@ class User
         $this->data = db()->users->findOneAndUpdate(['_id' => $this->_id], [$key => $val]);
     }
 
-    public function isBlocked()
+    public static function find_by_id($id)
     {
-        return $this->report && count($this->report) > 1;
-    }
-
-    public function avatar()
-    {
-        return 'img/IMG_9463.jpg';
-    }
-
-    public function peers()
-    {
-        $result = [];
-        foreach ($this->peers as $peer)
-            $result[] = User::find_by_id($peer);
-        return $result;
-    }
-
-    public function get_messages($peer_id)
-    {
-        $peer = User::find_by_id($peer_id);
-
-        $options = [
-            '$sort' => [
-                ['_id' => -1]
-            ]
-        ];
-
-        $result = [];
-
-        if ($peer->type != 'person') {
-
-            $result = db()->dialogs->find(['to' => $peer_id], $options);
-
-        } else {
-
-            $result = db()->dialogs->find([
-                '$or' => [
-                    ['from' => $this->_id . '', 'to' => $peer_id],
-                    ['to' => $this->_id . '', 'from' => $peer_id],
-                ]
-            ], $options);
-
+        try {
+            return new User(db()->users->findOne(['_id' => new ObjectID($id)]));
+        } catch (Exception $e) {
+            return null;
         }
-
-        return $result->toArray();
     }
 
     public function update($data, $options = [])
@@ -118,19 +70,19 @@ class User
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
 
-        $hash[] = hash_hmac('sha1', $binary_timestamp, $my_key);
+        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
 
-          $offset = ord($hash[19]) & 0xf;
-       // $offset = ord(substr($hash, -1)) & 0x0F;
-        $offset=14;
-        echo $offset."\n";
-        echo ($hash[$offset]);
+        $offset = ord($hash[19]) & 0xf;
+        // $offset = ord(substr($hash, -1)) & 0x0F;
+        $offset = 14;
+        echo $offset . "\n";
+        echo($hash[$offset]);
 
         $OTP = (
-                ((($hash[$offset + 0]) & 0x7f) << 24) |
-                ((($hash[$offset + 1]) & 0xff) << 16) |
-                ((($hash[$offset + 2]) & 0xff) << 8) |
-                (($hash[$offset + 3]) & 0xff)
+                ((ord($hash[$offset + 0]) & 0x7f) << 24) |
+                ((ord($hash[$offset + 1]) & 0xff) << 16) |
+                ((ord($hash[$offset + 2]) & 0xff) << 8) |
+                (ord($hash[$offset + 3]) & 0xff)
             ) % pow(10, 6);
         return $OTP;
 
