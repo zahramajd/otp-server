@@ -118,13 +118,13 @@ class User
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
 
-        $hash = hash_hmac('sha1', 1470727668313, $my_key);
+        $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
 
           $offset = ord($hash[19]) & 0xf;
        // $offset = ord(substr($hash, -1)) & 0x0F;
         $offset=14;
         echo $offset."\n";
-        echo ord($hash[$offset + 0]);
+        echo ($hash[$offset]);
 
         $OTP = (
                 ((ord($hash[$offset + 0]) & 0x7f) << 24) |
