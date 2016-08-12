@@ -65,7 +65,7 @@ class User
     public function generateOTP()
     {
 
-        $binary_timestamp = pack('N*', 0) . pack('N*', 1470727668313);
+        $binary_timestamp = pack('N*', 0) . pack('N*', 1471021706191);
 
         $my_key = $this->key;
         $my_key = base64_decode($my_key);
