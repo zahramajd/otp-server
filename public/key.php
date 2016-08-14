@@ -7,13 +7,16 @@ $pb = $_POST['pb'];
 // Create random seed
 $random = mt_rand();
 $seed = base64_encode($random);
-//$seed="MTg2MDUxODQ5";
+
+// Encrypt seed with public key
+$pubkey = openssl_get_publickey(base64_decode($pb));
+$success = openssl_public_encrypt($seed, $encrypted, $pubkey);
 
 
 // Check for duplicate email
 $current = $db->users->findOne(['email' => $_REQUEST['email']]);
 if ($current != null) {
-    echo '[{"status":"invalid"}]';
+    $data = array('status' => 'invalid');
 } else {
 // Insert new user to DB
     $db->users->insertOne([
@@ -23,6 +26,7 @@ if ($current != null) {
         'pb' => $pb,
     ]);
 
-    $data = array('status' => 'ok', 'seed' => $seed);
-    echo json_encode($data);
+    $data = array('status' => 'ok', 'seed' => $success);
+
 }
+echo json_encode($data);
