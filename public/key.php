@@ -2,7 +2,7 @@
 
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
-$key = $_POST['key'];
+$key = $_POST['seed'];
 
 //$decoded_key = base64_decode($key);
 //$arr = explode($email, $decoded_key);
