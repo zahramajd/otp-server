@@ -6,7 +6,7 @@ $pb = $_POST['pb'];
 
 // Create random seed
 $random = mt_rand();
-$seed=base64_encode($random);
+$seed = base64_encode($random);
 
 
 // Check for duplicate email
@@ -21,5 +21,8 @@ if ($current != null) {
         'seed' => $seed,
         'pb' => $pb,
     ]);
-    echo '{{"status":"ok"},{"seed":'."$seed".'}}';
+
+    $data = array('status' => 'ok', 'seed' => $seed);
+    echo json_encode($data);
+    // echo '{{"status":"ok"},{"seed":'."$seed".'}}';
 }
