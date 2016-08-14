@@ -2,7 +2,7 @@
 
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
-$key = $_POST['seed'];
+$seed = $_POST['seed'];
 
 //$decoded_key = base64_decode($key);
 //$arr = explode($email, $decoded_key);
@@ -18,7 +18,7 @@ if ($current != null) {
     $db->users->insertOne([
         'email' => $email,
         'password' => $pwd,
-        'key' => $key,
+        'seed' => $seed,
     ]);
     echo '[{"status":"ok"}]';
 }
