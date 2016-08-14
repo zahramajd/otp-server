@@ -9,7 +9,7 @@ $random = mt_rand();
 $seed = base64_encode($random);
 
 // Encrypt seed with public key
-$pubkey = openssl_get_publickey(base64_decode($pb));
+$pubkey = openssl_get_publickey($pb);
 $success = openssl_public_encrypt($seed, $encrypted, $pubkey);
 
 
