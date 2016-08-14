@@ -6,7 +6,8 @@ $pb = $_POST['pb'];
 
 // Create random seed
 $random = mt_rand();
-$seed = base64_encode($random);
+//$seed = base64_encode($random);
+$seed="MTg2MDUxODQ5";
 
 
 // Check for duplicate email
