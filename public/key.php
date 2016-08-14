@@ -2,11 +2,8 @@
 
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
-$key = $_POST['key'];
-
-//$decoded_key = base64_decode($key);
-//$arr = explode($email, $decoded_key);
-//$secret = $arr[0];
+$seed = $_POST['seed'];
+$pb=$_POST['pb'];
 
 
 // Check for duplicate email
@@ -18,7 +15,8 @@ if ($current != null) {
     $db->users->insertOne([
         'email' => $email,
         'password' => $pwd,
-        'key' => $key,
+        'seed' => $seed,
+        'pb'=>$pb,
     ]);
     echo '[{"status":"ok"}]';
 }
