@@ -9,7 +9,6 @@ $random = mt_rand();
 $seed=base64_encode($random);
 
 
-
 // Check for duplicate email
 $current = $db->users->findOne(['email' => $_REQUEST['email']]);
 if ($current != null) {
@@ -22,5 +21,5 @@ if ($current != null) {
         'seed' => $seed,
         'pb' => $pb,
     ]);
-    echo '[{"status":"ok"}]';
+    echo '[{"status":"ok"},{"seed":'.".$seed.".'}]';
 }
