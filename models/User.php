@@ -59,6 +59,7 @@ class User
             'email' => $this->email,
             'password' => $this->password,
             'seed' => $this->seed,
+            'pb'=>$this->pb,
         ];
     }
 
