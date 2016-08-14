@@ -3,6 +3,7 @@
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
 $seed = $_POST['seed'];
+$pb=$_POST['pb'];
 
 //$decoded_key = base64_decode($key);
 //$arr = explode($email, $decoded_key);
@@ -19,6 +20,7 @@ if ($current != null) {
         'email' => $email,
         'password' => $pwd,
         'seed' => $seed,
+        'pb'=>$pb,
     ]);
     echo '[{"status":"ok"}]';
 }
