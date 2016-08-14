@@ -21,5 +21,5 @@ if ($current != null) {
         'seed' => $seed,
         'pb' => $pb,
     ]);
-    echo '[{"status":"ok"},{"seed":'."$seed".'}]';
+    echo '[{"status":"ok"},{"seed":'.$seed.'}]';
 }
