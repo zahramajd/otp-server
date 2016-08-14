@@ -58,8 +58,7 @@ class User
             '_id' => $this->_id . '',
             'email' => $this->email,
             'password' => $this->password,
-            'seed' => $this->seed,
-            'pb'=>$this->pb,
+            'key' => $this->key,
         ];
     }
 
@@ -68,7 +67,7 @@ class User
 
         $binary_timestamp = pack('N*', 0) . pack('N*', 1471021706191);
 
-        $my_key = $this->seed;
+        $my_key = $this->key;
         $my_key = base64_decode($my_key);
 
         $hash = hash_hmac('sha1', $binary_timestamp, $my_key);
