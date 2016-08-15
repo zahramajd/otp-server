@@ -13,6 +13,7 @@ $seed = base64_encode($random);
 //$pubkey = openssl_get_publickey(base64_encode($pb));
 //$success = openssl_public_encrypt($seed, $encrypted, $pb);
 
+$pb=base64_decode($pb);
 $ok= openssl_public_encrypt($seed,$encrypted,$pb);
 
 
