@@ -33,8 +33,8 @@ $seed = base64_encode($random);
 //$ok= openssl_public_encrypt($seed,$encrypted,$pb);
 
 
-$pubkey = openssl_pkey_get_public("-----BEGIN PUBLIC KEY-----\n2f124830b0cf914ad5c49257fb660d230603518a45f481315e3fa3b8fe6c8a404a3f819610d6f23ee05d1383a13347da06cfc805cf42a51195de8844dc03755394277bf2ed4837cfaef25172057c8bd7d91bc8483a64050e003cb3ebc111b0022debaebd8f10eb5a3aa8c70b3d2d091bcba85da932ac9b20cd3ec119b3fcb7,publicExponent=10001-----END PUBLIC KEY-----");
-$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
+//$pubkey = openssl_pkey_get_public();
+//$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
 
 
 // Check for duplicate email
@@ -50,7 +50,7 @@ if ($current != null) {
         'pb' => $pb,
     ]);
 
-    $data = array('status' => 'ok', 'seed' => $encrypted);
+    $data = array('status' => 'ok', 'seed' => $seed);
 
 }
 echo json_encode($data);
