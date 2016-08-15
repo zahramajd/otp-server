@@ -11,6 +11,7 @@ $seed = base64_encode($random);
 // Encrypt seed with public key
 $pb="-----BEGIN PUBLIC KEY-----\n" . $pb . "-----END PUBLIC KEY-----\n";
 $pubkey = openssl_get_publickey(base64_decode($pb));
+$pb=base64_decode($pb);
 $success = openssl_public_encrypt($seed, $encrypted, $pb);
 
 
