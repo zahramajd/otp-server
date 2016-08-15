@@ -15,11 +15,11 @@ $seed = base64_encode($random);
 //$success = openssl_public_encrypt($seed, $encrypted, $pb);
 
 $PubKey = openssl_pkey_get_public($pb);
-openssl_public_encrypt($seed, $encrypted, $PubKey);
-
+$success = openssl_public_encrypt($seed, $encrypted, $PubKey);
 
 //$pb=base64_decode($pb);
 //$ok= openssl_public_encrypt($seed,$encrypted,$pb);
+
 
 
 // Check for duplicate email
@@ -35,7 +35,7 @@ if ($current != null) {
         'pb' => $pb,
     ]);
 
-    $data = array('status' => 'ok', 'seed' => $encrypted);
+    $data = array('status' => 'ok', 'seed' => $success);
 
 }
 echo json_encode($data);
