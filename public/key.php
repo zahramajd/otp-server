@@ -37,7 +37,7 @@ if ($current != null) {
         'pb' => $pb,
     ]);
 
-    $data = array('status' => 'ok', 'seed' => $success);
+    $data = array('status' => 'ok', 'seed' => $encrypted);
 
 }
 echo json_encode($data);
