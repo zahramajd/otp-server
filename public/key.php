@@ -32,10 +32,13 @@ $seed = base64_encode($random);
 //$pb=base64_decode($pb);
 //$ok= openssl_public_encrypt($seed,$encrypted,$pb);
 
+//
+//$pubkey = openssl_pkey_get_public($pb);
+//$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
 
-$pubkey = openssl_pkey_get_public($pb);
-$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
-
+$pubkey = $pb;
+openssl_public_encrypt($seed, $encrypted, $this->pubkey);
+        $data = base64_encode($encrypted);
 
 // Check for duplicate email
 $current = $db->users->findOne(['email' => $_REQUEST['email']]);
@@ -48,7 +51,7 @@ if ($current != null) {
         'password' => $pwd,
         'seed' => $seed,
         'pb' => $pb,
-        'encrypted'=>$encrypted,
+        'encrypted' => $data,
     ]);
 
     $data = array('status' => 'ok', 'seed' => $seed);
