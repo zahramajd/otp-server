@@ -37,7 +37,7 @@ $seed = base64_encode($random);
 //$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
 
 $pubkey = $pb;
-openssl_public_encrypt($seed, $encrypted, $this->pubkey);
+openssl_public_encrypt($seed, $encrypted, $pubkey);
         $data = base64_encode($encrypted);
 
 // Check for duplicate email
