@@ -33,8 +33,8 @@ $seed = base64_encode($random);
 //$ok= openssl_public_encrypt($seed,$encrypted,$pb);
 
 
-//$pubkey = openssl_pkey_get_public();
-//$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
+$pubkey = openssl_pkey_get_public($pb);
+$ok= openssl_public_encrypt($seed,$encrypted,$pubkey);
 
 
 // Check for duplicate email
@@ -48,6 +48,7 @@ if ($current != null) {
         'password' => $pwd,
         'seed' => $seed,
         'pb' => $pb,
+        'encrypted'=>$encrypted,
     ]);
 
     $data = array('status' => 'ok', 'seed' => $seed);
