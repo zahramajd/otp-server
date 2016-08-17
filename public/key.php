@@ -1,11 +1,6 @@
 <?php require_once '../init.php';
 
 
-
-set_include_path(get_include_path() . get_include_path().'/phpseclib');
-include('Net/SSH2.php');
-echo('if you are reading this, phpseclib has been included');
-
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
 $pb = $_POST['pb'];
