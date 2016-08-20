@@ -1,15 +1,8 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "author's name",
-      "email": "email@example.com"
+    "name": "totp/totp",
+    "description": "Totp server",
+    "require": {
+        "spomky-labs/otphp": "^8.2",
+        "mongodb/mongodb": "^1.0"
     }
-  ],
-  "require": {
-    "mongodb/mongodb": "^1.0.0"
-  }
 }
