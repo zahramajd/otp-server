@@ -2,13 +2,6 @@
 use MongoDB\BSON\ObjectID;
 use OTPHP\TOTP;
 
-
-/**
- * @property string _id
- * @property string email
- * @property string password
- * @property string seed
- */
 class User
 {
     var $data;
@@ -39,7 +32,7 @@ class User
 
     public function otp()
     {
-        $totp = new TOTP('', \Base32\Base32::encode($this->seed), 60, 'sha1', 6);
+        $totp = new TOTP('', \Base32\Base32::encode($this->seed), 30, 'sha1', 6);
         return $totp;
     }
 

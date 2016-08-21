@@ -7,9 +7,6 @@ if (isset($_REQUEST['action'])) {
 
     switch ($_REQUEST['action']) {
 
-        // --------------------------------------------------------------------------------------------
-        // Login
-        // --------------------------------------------------------------------------------------------
         case 'login':
 
             if ($current == null) {
@@ -27,10 +24,7 @@ if (isset($_REQUEST['action'])) {
                 }
             }
             break;
-        
-        // --------------------------------------------------------------------------------------------
-        // Register
-        // --------------------------------------------------------------------------------------------
+
         case 'register':
 
             // Check for duplicate email
@@ -39,19 +33,18 @@ if (isset($_REQUEST['action'])) {
                 $message = 'User exists';
                 break;
             }
-            
+
             // Insert new user to DB
             db()->users->insertOne([
                 'email' => $_REQUEST['email'],
                 'password' => $_REQUEST['password'],
             ]);
 
-            $message='User created! Now login ... :)';
+            $message = 'Signed Up';
 
             break;
     }
 }
-
 ?>
 
 <html>

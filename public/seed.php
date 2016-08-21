@@ -10,14 +10,14 @@ if (!$email || !$pwd || !$key) {
     die();
 }
 
-// Try to find and authenticate user
+
 $current = User::find_by('email', $email);
 if ($current == null || $current->password != $pwd) {
     echo json_encode(['status' => 'Invalid email or password!']);
     die();
 }
 
-// Make a new seed TODO
+// Make a new seed 
 if (!$current->seed) {
     $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
 }
