@@ -26,12 +26,12 @@ if ($current != null) {
 //$current = User::find_by('email', $email);
 // echo 'in else';
 // Insert new user to DB
-$current=db()->users->insertOne([
+db()->users->insertOne([
     'email' => $email,
     'password' => $pwd,
 ]);
 
-//$current = User::find_by('email', $email);
+$current = User::find_by('email', $email);
 // Make a new seed
 if (!$current->seed) {
     $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
