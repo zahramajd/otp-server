@@ -2,7 +2,7 @@
 
 // Get request input
 $email = @$_REQUEST['email'];
-$pwd = @$_REQUEST['pwd'];
+$pwd = @$_REQUEST['password'];
 $key = @$_REQUEST['key'];
 
 if (!$email || !$pwd || !$key) {
