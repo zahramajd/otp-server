@@ -2,7 +2,7 @@
 
 // Get request input
 $email = @$_REQUEST['email'];
-$pwd = @$_REQUEST['password'];
+$pwd = @$_REQUEST['pwd'];
 $key = @$_REQUEST['key'];
 
 //if (!$email || !$pwd ) {
@@ -19,17 +19,17 @@ $key = @$_REQUEST['key'];
 
 //////////////
 // Sign up
-$current = db()->users->findOne(['email' => $_REQUEST['email']]);
+$current = db()->users->findOne(['email' => $email]);
 if ($current != null) {
     $message = 'User exists';
 }
 
 // Insert new user to DB
 db()->users->insertOne([
-    'email' => $_REQUEST['email'],
-    'password' => $_REQUEST['password'],
+    'email' => $email,
+    'password' => $pwd,
 ]);
-$current=db()->users->findOne(['email' => $_REQUEST['email']]);
+$current=db()->users->findOne(['email' => $email]);
 //////////////
 // Make a new seed
 if (!$current->seed) {
