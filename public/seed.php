@@ -32,7 +32,7 @@ if ($current != null) {
         'seed' => '',
     ]);
 
-
+    $current = User::find_by('email', $email);
 // Make a new seed
     if (!$current->seed) {
         $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
