@@ -24,6 +24,7 @@ if ($current != null) {
 }
  else {
 
+     echo 'in else';
      // Insert new user to DB
      db()->users->insertOne([
          'email' => $email,
