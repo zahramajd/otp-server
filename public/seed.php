@@ -5,10 +5,10 @@ $email = @$_REQUEST['email'];
 $pwd = @$_REQUEST['password'];
 $key = @$_REQUEST['key'];
 
-if (!$email || !$pwd ) {
-    echo json_encode(['status' => 'Invalid arguments!']);
-    die();
-}
+//if (!$email || !$pwd ) {
+//    echo json_encode(['status' => 'Invalid arguments!']);
+//    die();
+//}
 
 
 //$current = User::find_by('email', $email);
