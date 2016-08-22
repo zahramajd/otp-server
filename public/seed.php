@@ -11,18 +11,34 @@ if (!$email || !$pwd || !$key) {
 }
 
 
+//$current = User::find_by('email', $email);
+//if ($current == null || $current->password != $pwd) {
+//    echo json_encode(['status' => 'Invalid email or password!']);
+//    die();
+//}
+
 $current = User::find_by('email', $email);
-if ($current == null || $current->password != $pwd) {
-    echo json_encode(['status' => 'Invalid email or password!']);
+if ($current != null) {
+    echo json_encode(['status' => 'already exists']);
     die();
 }
+ else {
 
-// Make a new seed 
-if (!$current->seed) {
-    $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
-}
+     // Insert new user to DB
+     db()->users->insertOne([
+         'email' => $email,
+         'password' => $pwd,
+     ]);
+
+
+// Make a new seed
+     if (!$current->seed) {
+         $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
+     }
 
 // Encrypt seed with key
-openssl_public_encrypt($current->seed, $encrypted, $key);
-$encrypted = base64_encode($encrypted);
-echo $encrypted;
+     openssl_public_encrypt($current->seed, $encrypted, $key);
+     $encrypted = base64_encode($encrypted);
+     echo $encrypted;
+
+ }
