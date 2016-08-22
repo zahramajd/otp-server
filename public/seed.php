@@ -29,6 +29,7 @@ if ($current != null) {
      db()->users->insertOne([
          'email' => $email,
          'password' => $pwd,
+         'seed'=> '',
      ]);
 
 
