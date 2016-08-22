@@ -25,24 +25,24 @@ if (isset($_REQUEST['action'])) {
             }
             break;
 
-        case 'register':
-
-            // Check for duplicate email
-            $current = db()->users->findOne(['email' => $_REQUEST['email']]);
-            if ($current != null) {
-                $message = 'User exists';
-                break;
-            }
-
-            // Insert new user to DB
-            db()->users->insertOne([
-                'email' => $_REQUEST['email'],
-                'password' => $_REQUEST['password'],
-            ]);
-
-            $message = 'Signed Up';
-
-            break;
+//        case 'register':
+//
+//            // Check for duplicate email
+//            $current = db()->users->findOne(['email' => $_REQUEST['email']]);
+//            if ($current != null) {
+//                $message = 'User exists';
+//                break;
+//            }
+//
+//            // Insert new user to DB
+//            db()->users->insertOne([
+//                'email' => $_REQUEST['email'],
+//                'password' => $_REQUEST['password'],
+//            ]);
+//
+//            $message = 'Signed Up';
+//
+//            break;
     }
 }
 ?>

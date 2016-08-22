@@ -11,12 +11,26 @@ if (!$email || !$pwd || !$key) {
 }
 
 
-$current = User::find_by('email', $email);
-if ($current == null || $current->password != $pwd) {
-    echo json_encode(['status' => 'Invalid email or password!']);
-    die();
+//$current = User::find_by('email', $email);
+//if ($current == null || $current->password != $pwd) {
+//    echo json_encode(['status' => 'Invalid email or password!']);
+//    die();
+//}
+
+//////////////
+// Sign up
+$current = db()->users->findOne(['email' => $_REQUEST['email']]);
+if ($current != null) {
+    $message = 'User exists';
 }
 
+// Insert new user to DB
+db()->users->insertOne([
+    'email' => $_REQUEST['email'],
+    'password' => $_REQUEST['password'],
+]);
+$current=db()->users->findOne(['email' => $_REQUEST['email']]);
+//////////////
 // Make a new seed
 if (!$current->seed) {
     $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
