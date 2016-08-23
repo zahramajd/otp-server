@@ -9,8 +9,6 @@ $key = @$_REQUEST['key'];
 //    echo json_encode(['status' => 'Invalid arguments!']);
 //    die();
 //}
-
-
 //$current = User::find_by('email', $email);
 //if ($current == null || $current->password != $pwd) {
 //    echo json_encode(['status' => 'Invalid email or password!']);
@@ -24,18 +22,15 @@ if ($current != null) {
     die();
 }
 
+// Make seed
+$seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
+
 // Insert new user to DB
-db()->users->insertOne([
+$current=db()->users->insertOne([
     'email' => $email,
     'password' => $pwd,
-    'seed' => 'gh',
+    'seed' => $seed,
 ]);
-$current = db()->users->findOne(['email' => $email]);
-//////////////
-// Make a new seed
-
-$current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
-
 
 // Encrypt seed with key
 openssl_public_encrypt($current->seed, $encrypted, $key);
