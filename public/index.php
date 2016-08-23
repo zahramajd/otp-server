@@ -51,7 +51,7 @@ if (isset($_REQUEST['action'])) {
         <form class="form-signin" method="post">
 
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="text" name="email" class="form-control" placeholder="Username" required autofocus>
             <input type="password" name="password" class="form-control" placeholder="Password" required>
             <input type="text" name="otp" class="form-control" placeholder="OTP">
 
