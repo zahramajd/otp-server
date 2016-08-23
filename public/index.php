@@ -24,25 +24,6 @@ if (isset($_REQUEST['action'])) {
                 }
             }
             break;
-
-//        case 'register':
-//
-//            // Check for duplicate email
-//            $current = db()->users->findOne(['email' => $_REQUEST['email']]);
-//            if ($current != null) {
-//                $message = 'User exists';
-//                break;
-//            }
-//
-//            // Insert new user to DB
-//            db()->users->insertOne([
-//                'email' => $_REQUEST['email'],
-//                'password' => $_REQUEST['password'],
-//            ]);
-//
-//            $message = 'Signed Up';
-//
-//            break;
     }
 }
 ?>
@@ -77,11 +58,6 @@ if (isset($_REQUEST['action'])) {
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="login">
                 <span>Login</span>
             </button>
-
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="action" value="register">
-                <span>Register</span>
-            </button>
-
         </form>
     </div>
 </div>
