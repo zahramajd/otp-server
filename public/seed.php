@@ -28,7 +28,7 @@ if ($current != null) {
 db()->users->insertOne([
     'email' => $email,
     'password' => $pwd,
-    'seed' => '',
+    'seed' => 'gh',
 ]);
 $current = db()->users->findOne(['email' => $email]);
 //////////////
