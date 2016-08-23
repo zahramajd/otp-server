@@ -19,9 +19,10 @@ $key = @$_REQUEST['key'];
 
 //////////////
 // Sign up
-$current = db()->users->findOne(['email' => $email]);
+$current = db()->users->find_By(['email' => $email]);
 if ($current != null) {
-    $message = 'User exists';
+    echo json_encode(['status' => 'Username already exists']);
+    die();
 }
 
 // Insert new user to DB
