@@ -26,12 +26,13 @@ if ($current != null) {
 $seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
 
 // Insert new user to DB
-$current=db()->users->insertOne([
+db()->users->insertOne([
     'email' => $email,
     'password' => $pwd,
     'seed' => $seed,
 ]);
 
+$current=User::find_by('email',$email);
 // Encrypt seed with key
 openssl_public_encrypt($current->seed, $encrypted, $key);
 $encrypted = base64_encode($encrypted);
