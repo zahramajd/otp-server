@@ -19,7 +19,7 @@ $key = @$_REQUEST['key'];
 
 //////////////
 // Sign up
-$current = db()->users->find_By(['email' => $email]);
+$current = db()->users->find_By('email', $email);
 if ($current != null) {
     echo json_encode(['status' => 'Username already exists']);
     die();
@@ -29,9 +29,9 @@ if ($current != null) {
 db()->users->insertOne([
     'email' => $email,
     'password' => $pwd,
-    'seed'=>'',
+    'seed' => '',
 ]);
-$current=db()->users->findOne(['email' => $email]);
+$current = db()->users->findOne(['email' => $email]);
 //////////////
 // Make a new seed
 if (!$current->seed) {
