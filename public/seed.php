@@ -33,9 +33,9 @@ db()->users->insertOne([
 $current = db()->users->findOne(['email' => $email]);
 //////////////
 // Make a new seed
-if (!$current->seed) {
-    $current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
-}
+
+$current->seed = sha1("" . (int)(rand(1005, 3234334) * time() / 100));
+
 
 // Encrypt seed with key
 openssl_public_encrypt($current->seed, $encrypted, $key);
