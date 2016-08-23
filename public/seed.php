@@ -17,7 +17,6 @@ $key = @$_REQUEST['key'];
 //    die();
 //}
 
-//////////////
 // Sign up
 $current = User::find_By('email', $email);
 if ($current != null) {
