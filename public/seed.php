@@ -19,7 +19,7 @@ $key = @$_REQUEST['key'];
 
 //////////////
 // Sign up
-$current = db()->users->find_By('email', $email);
+$current = User::find_By('email', $email);
 if ($current != null) {
     echo json_encode(['status' => 'Username already exists']);
     die();
