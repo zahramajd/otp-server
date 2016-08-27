@@ -1,5 +1,4 @@
 <?php require_once '../init.php';
 
-
-$currentTime = new Date();
-echo $currentTime;
+$milliseconds = round(microtime(true) * 1000);
+echo $milliseconds;
