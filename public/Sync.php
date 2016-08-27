@@ -1,4 +1,4 @@
-<?php require_once '../init.php';
+<?php
 
 $milliseconds = round(microtime(true) * 1000);
 echo $milliseconds;
