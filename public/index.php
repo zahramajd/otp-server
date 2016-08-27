@@ -18,7 +18,7 @@ if (isset($_REQUEST['action'])) {
                 break;
             } else {
                 if ($current->otp()->now() != $_REQUEST['otp']) {
-                    $message ='wrong OTP';
+                    $message ='wrong OTP '.$current->otp()->now();
                 } else {
                     $message = "logged in :)";
                 }
