@@ -1,1 +1,1 @@
-<?php$milliseconds = round(microtime(true) * 1000);echo $milliseconds;
+<?php// send the current time of server to client$milliseconds = round(microtime(true) * 1000);echo $milliseconds;
