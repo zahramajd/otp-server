@@ -20,7 +20,19 @@ if (isset($_REQUEST['action'])) {
                 if ($current->otp()->now() != $_REQUEST['otp']) {
                     $message ='wrong OTP ';
                 } else {
-                    $message = "logged in :)";
+
+                    // Prevent using this key again by another user
+
+                    // Check if current otp was not already used
+                    if($current->last_otp == $_REQUEST['otp']) {
+                        $message = "Code already used!";
+                    } else {
+                        // Update last_otp using magic field
+                        // (This will immediately save current state)
+                        $current->last_otp = $_REQUEST['otp'];
+                        $message = "logged in :)";
+                    }
+
                 }
             }
             break;
