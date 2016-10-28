@@ -57,7 +57,7 @@ if (isset($_REQUEST['action'])) {
             </div>
         <?php endif; ?>
 
-        <img id="profile-img" class="profile-img-card" src="./css/Key.png"/>
+        <img id="profile-img" class="profile-img-card" src="./css/key.png"/>
         <p id="profile-name" class="profile-name-card"></p>
 
         <form class="form-signin" method="post">
